@@ -45,7 +45,7 @@ namespace git_history
                     }
                     var 프로젝트폴더 = 과목.작업폴더 + @"\" + 프로젝트.프로젝트명;
                     if (Directory.Exists(프로젝트폴더) == false)
-                        Download.Clone(프로젝트.url, 과목.작업폴더);
+                        Download.Clone(프로젝트.id, 프로젝트.url, 과목.작업폴더);
                 }
             }
             btn작업폴더생성.Enabled = true;
@@ -59,7 +59,7 @@ namespace git_history
                 var 과목 = db.과목.FirstOrDefault(p => p.과목명 == cmb과목.SelectedItem.ToString());
                 foreach (var 프로젝트 in 과목.Project)
                 {
-                    var 프로젝트폴더 = 과목.작업폴더 + @"\" + 프로젝트.프로젝트명;
+                    var 프로젝트폴더 = 과목.작업폴더 + @"\" + 프로젝트.id + @"\" + 프로젝트.프로젝트명;
                     if (Directory.Exists(프로젝트폴더) == false) continue;
                     Download.createNumstat(프로젝트폴더);
                     Git.parseLog(db, 프로젝트폴더, 프로젝트.id);

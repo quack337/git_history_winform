@@ -20,7 +20,7 @@ namespace git_history
             return match.Success ? match.Groups[1].Value : null;
         }
 
-        public static void Clone(string url, string 작업폴더)
+        public static void Clone(int projectId, string url, string 작업폴더)
         {
             if (Directory.Exists(작업폴더) == false) Directory.CreateDirectory(작업폴더);
 
@@ -38,6 +38,8 @@ namespace git_history
             process.StartInfo = info;
             process.Start();
 
+            process.StandardInput.Write("mkdir " + projectId + Environment.NewLine);
+            process.StandardInput.Write("cd " + projectId + Environment.NewLine);
             process.StandardInput.Write("git clone " + url + Environment.NewLine);
             process.StandardInput.Write("cd " + projectName + Environment.NewLine);
             process.StandardInput.Write("git log --numstat > _numstat.txt" + Environment.NewLine);
