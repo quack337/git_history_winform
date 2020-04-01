@@ -43,10 +43,11 @@
             // cmb과목
             // 
             this.cmb과목.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb과목.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cmb과목.FormattingEnabled = true;
             this.cmb과목.Location = new System.Drawing.Point(69, 29);
             this.cmb과목.Name = "cmb과목";
-            this.cmb과목.Size = new System.Drawing.Size(209, 20);
+            this.cmb과목.Size = new System.Drawing.Size(209, 24);
             this.cmb과목.TabIndex = 0;
             // 
             // label1
