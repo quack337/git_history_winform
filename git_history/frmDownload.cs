@@ -36,6 +36,8 @@ namespace git_history
                 var 과목 = db.과목.FirstOrDefault(p => p.과목명 == cmb과목.SelectedItem.ToString());
                 foreach (var 프로젝트 in 과목.Project)
                 {
+                    if (txt학번.Text.Trim().Length > 0 && 프로젝트.학생_프로젝트.Any(p => p.학번 == txt학번.Text) == false)
+                        continue;
                     if (string.IsNullOrEmpty(프로젝트.프로젝트명))
                     {
                         var s = Download.GetProjectName(프로젝트.url);
@@ -59,6 +61,8 @@ namespace git_history
                 var 과목 = db.과목.FirstOrDefault(p => p.과목명 == cmb과목.SelectedItem.ToString());
                 foreach (var 프로젝트 in 과목.Project)
                 {
+                    if (txt학번.Text.Trim().Length > 0 && 프로젝트.학생_프로젝트.Any(p => p.학번 == txt학번.Text) == false)
+                        continue;
                     var 프로젝트폴더 = 과목.작업폴더 + @"\" + 프로젝트.id + @"\" + 프로젝트.프로젝트명;
                     if (Directory.Exists(프로젝트폴더) == false) continue;
                     Download.createNumstat(프로젝트폴더);

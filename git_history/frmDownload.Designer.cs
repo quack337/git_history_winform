@@ -34,6 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn작업폴더생성 = new System.Windows.Forms.Button();
             this.btnNumstat = new System.Windows.Forms.Button();
+            this.txt학번 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -45,25 +47,25 @@
             this.cmb과목.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb과목.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.cmb과목.FormattingEnabled = true;
-            this.cmb과목.Location = new System.Drawing.Point(69, 29);
+            this.cmb과목.Location = new System.Drawing.Point(79, 31);
             this.cmb과목.Name = "cmb과목";
-            this.cmb과목.Size = new System.Drawing.Size(209, 24);
+            this.cmb과목.Size = new System.Drawing.Size(238, 24);
             this.cmb과목.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 32);
+            this.label1.Location = new System.Drawing.Point(39, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "과목";
             // 
             // btn작업폴더생성
             // 
-            this.btn작업폴더생성.Location = new System.Drawing.Point(69, 64);
+            this.btn작업폴더생성.Location = new System.Drawing.Point(79, 69);
             this.btn작업폴더생성.Name = "btn작업폴더생성";
-            this.btn작업폴더생성.Size = new System.Drawing.Size(118, 33);
+            this.btn작업폴더생성.Size = new System.Drawing.Size(135, 36);
             this.btn작업폴더생성.TabIndex = 13;
             this.btn작업폴더생성.Text = "작업폴더 생성";
             this.btn작업폴더생성.UseVisualStyleBackColor = true;
@@ -71,23 +73,42 @@
             // 
             // btnNumstat
             // 
-            this.btnNumstat.Location = new System.Drawing.Point(193, 64);
+            this.btnNumstat.Location = new System.Drawing.Point(221, 69);
             this.btnNumstat.Name = "btnNumstat";
-            this.btnNumstat.Size = new System.Drawing.Size(142, 33);
+            this.btnNumstat.Size = new System.Drawing.Size(162, 36);
             this.btnNumstat.TabIndex = 14;
             this.btnNumstat.Text = "numstat 생성 & 파싱";
             this.btnNumstat.UseVisualStyleBackColor = true;
             this.btnNumstat.Click += new System.EventHandler(this.btnNumstat_Click);
             // 
+            // txt학번
+            // 
+            this.txt학번.Location = new System.Drawing.Point(466, 36);
+            this.txt학번.Name = "txt학번";
+            this.txt학번.Size = new System.Drawing.Size(147, 22);
+            this.txt학번.TabIndex = 15;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(426, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "학번";
+            // 
             // frmDownload
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 488);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txt학번);
             this.Controls.Add(this.btnNumstat);
             this.Controls.Add(this.btn작업폴더생성);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmb과목);
+            this.Font = new System.Drawing.Font("Gulim", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Name = "frmDownload";
             this.Text = "frmDownload";
             this.Load += new System.EventHandler(this.frmDownload_Load);
@@ -103,5 +124,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn작업폴더생성;
         private System.Windows.Forms.Button btnNumstat;
+        private System.Windows.Forms.TextBox txt학번;
+        private System.Windows.Forms.Label label2;
     }
 }
