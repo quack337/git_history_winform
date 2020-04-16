@@ -35,6 +35,8 @@ namespace git_history
             info.RedirectStandardOutput = true;
             info.RedirectStandardInput = true;
             info.RedirectStandardError = true;
+            info.UseShellExecute = false;
+            info.CreateNoWindow = true;
             process.StartInfo = info;
             process.Start();
 
@@ -63,6 +65,8 @@ namespace git_history
             info.RedirectStandardOutput = true;
             info.RedirectStandardInput = true;
             info.RedirectStandardError = true;
+            info.UseShellExecute = false;
+            info.CreateNoWindow = true;
             process.StartInfo = info;
             process.Start();
 
