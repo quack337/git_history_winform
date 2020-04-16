@@ -15,7 +15,7 @@ namespace git_history
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmDownload());
+            Application.Run(new frmMain());
         }
     }
 }

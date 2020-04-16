@@ -83,7 +83,7 @@
             // 
             // txt학번
             // 
-            this.txt학번.Location = new System.Drawing.Point(466, 36);
+            this.txt학번.Location = new System.Drawing.Point(382, 32);
             this.txt학번.Name = "txt학번";
             this.txt학번.Size = new System.Drawing.Size(147, 22);
             this.txt학번.TabIndex = 15;
@@ -91,7 +91,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(426, 39);
+            this.label2.Location = new System.Drawing.Point(342, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 13);
             this.label2.TabIndex = 16;
@@ -101,7 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 488);
+            this.ClientSize = new System.Drawing.Size(657, 189);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt학번);
             this.Controls.Add(this.btnNumstat);

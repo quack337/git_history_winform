@@ -71,5 +71,6 @@ namespace git_history
             }
             btnNumstat.Enabled = true;
         }
+
     }
 }

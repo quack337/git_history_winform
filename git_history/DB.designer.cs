@@ -57,6 +57,9 @@ namespace git_history
     partial void Insert학생(학생 instance);
     partial void Update학생(학생 instance);
     partial void Delete학생(학생 instance);
+    partial void Insert과제파일(과제파일 instance);
+    partial void Update과제파일(과제파일 instance);
+    partial void Delete과제파일(과제파일 instance);
     #endregion
 		
 		public DBDataContext() : 
@@ -158,6 +161,14 @@ namespace git_history
 			get
 			{
 				return this.GetTable<학생>();
+			}
+		}
+		
+		public System.Data.Linq.Table<과제파일> 과제파일
+		{
+			get
+			{
+				return this.GetTable<과제파일>();
 			}
 		}
 	}
@@ -2082,6 +2093,188 @@ namespace git_history
 		{
 			this.SendPropertyChanging();
 			entity.학생 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.과제파일")]
+	public partial class 과제파일 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _과목;
+		
+		private string _파일명1;
+		
+		private string _파일명2;
+		
+		private string _파일명3;
+		
+		private System.DateTime _시작일;
+		
+		private System.DateTime _종료일;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void On과목Changing(string value);
+    partial void On과목Changed();
+    partial void On파일명1Changing(string value);
+    partial void On파일명1Changed();
+    partial void On파일명2Changing(string value);
+    partial void On파일명2Changed();
+    partial void On파일명3Changing(string value);
+    partial void On파일명3Changed();
+    partial void On시작일Changing(System.DateTime value);
+    partial void On시작일Changed();
+    partial void On종료일Changing(System.DateTime value);
+    partial void On종료일Changed();
+    #endregion
+		
+		public 과제파일()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_과목", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string 과목
+		{
+			get
+			{
+				return this._과목;
+			}
+			set
+			{
+				if ((this._과목 != value))
+				{
+					this.On과목Changing(value);
+					this.SendPropertyChanging();
+					this._과목 = value;
+					this.SendPropertyChanged("과목");
+					this.On과목Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_파일명1", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string 파일명1
+		{
+			get
+			{
+				return this._파일명1;
+			}
+			set
+			{
+				if ((this._파일명1 != value))
+				{
+					this.On파일명1Changing(value);
+					this.SendPropertyChanging();
+					this._파일명1 = value;
+					this.SendPropertyChanged("파일명1");
+					this.On파일명1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_파일명2", DbType="NVarChar(50)")]
+		public string 파일명2
+		{
+			get
+			{
+				return this._파일명2;
+			}
+			set
+			{
+				if ((this._파일명2 != value))
+				{
+					this.On파일명2Changing(value);
+					this.SendPropertyChanging();
+					this._파일명2 = value;
+					this.SendPropertyChanged("파일명2");
+					this.On파일명2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_파일명3", DbType="NVarChar(50)")]
+		public string 파일명3
+		{
+			get
+			{
+				return this._파일명3;
+			}
+			set
+			{
+				if ((this._파일명3 != value))
+				{
+					this.On파일명3Changing(value);
+					this.SendPropertyChanging();
+					this._파일명3 = value;
+					this.SendPropertyChanged("파일명3");
+					this.On파일명3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_시작일", DbType="DateTime NOT NULL")]
+		public System.DateTime 시작일
+		{
+			get
+			{
+				return this._시작일;
+			}
+			set
+			{
+				if ((this._시작일 != value))
+				{
+					this.On시작일Changing(value);
+					this.SendPropertyChanging();
+					this._시작일 = value;
+					this.SendPropertyChanged("시작일");
+					this.On시작일Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_종료일", DbType="DateTime NOT NULL")]
+		public System.DateTime 종료일
+		{
+			get
+			{
+				return this._종료일;
+			}
+			set
+			{
+				if ((this._종료일 != value))
+				{
+					this.On종료일Changing(value);
+					this.SendPropertyChanging();
+					this._종료일 = value;
+					this.SendPropertyChanged("종료일");
+					this.On종료일Changed();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
