@@ -96,8 +96,9 @@
   </Table>
   <Table Name="dbo.과제파일" Member="과제파일">
     <Type Name="과제파일">
-      <Column Name="과목" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="파일명1" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="과목" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="파일명1" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="파일명2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="파일명3" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="시작일" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />

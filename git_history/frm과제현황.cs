@@ -57,7 +57,7 @@ namespace git_history
             var 과목 = cmb과목.SelectedItem.ToString();
             using (var db = new DBDataContext())
             {
-                var 파일목록 = db.과제파일.Where(p => p.과목 == 과목 && p.시작일 == 시작일).Select(p => p.파일명1).ToList();
+                var 파일목록 = db.과제파일.Where(p => p.과목 == 과목 && p.시작일 == 시작일).OrderBy(p => p.id).Select(p => p.파일명1).ToList();
                 while (파일목록.Count < 6)
                     파일목록.Add("");
                 var 헤더 = new 과제제출 { 학번 = "학번", 이름 = "이름", 제출1 = 파일목록[0],

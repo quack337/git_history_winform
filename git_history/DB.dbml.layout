@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.25, 11.5" name="DB">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.5, 11.5" name="DB">
   <DataContextMoniker Name="/DBDataContext" />
   <nestedChildShapes>
     <classShape Id="fda9d58e-b707-4f2c-a95b-75a39dbfdf96" absoluteBounds="3.5, 1.25, 2, 1.5785953776041666">
@@ -119,10 +119,10 @@
         <classShapeMoniker Id="81ff6b20-228c-4bb8-925d-62d4b5bf7059" />
       </nodes>
     </associationConnector>
-    <classShape Id="ba44d6e0-3863-4545-8f18-466c39c37531" absoluteBounds="12, 2.75, 2, 1.9631982421875">
+    <classShape Id="1a9b9f42-797a-4155-96c6-8ff149e8de25" absoluteBounds="12.25, 2.375, 2, 2.1554996744791666">
       <DataClassMoniker Name="/DBDataContext/과제파일" />
       <nestedChildShapes>
-        <elementListCompartment Id="a55e9aa0-46f7-4926-8269-9ea2d8453cbc" absoluteBounds="12.015, 3.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="bc9b6868-07f3-460d-ad3c-ce7a59444459" absoluteBounds="12.265, 2.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

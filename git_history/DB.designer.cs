@@ -2102,6 +2102,8 @@ namespace git_history
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
+		private int _id;
+		
 		private string _과목;
 		
 		private string _파일명1;
@@ -2118,6 +2120,8 @@ namespace git_history
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
     partial void On과목Changing(string value);
     partial void On과목Changed();
     partial void On파일명1Changing(string value);
@@ -2137,7 +2141,27 @@ namespace git_history
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_과목", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_과목", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string 과목
 		{
 			get
@@ -2157,7 +2181,7 @@ namespace git_history
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_파일명1", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_파일명1", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string 파일명1
 		{
 			get
