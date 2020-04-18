@@ -12,12 +12,16 @@ namespace git_history
     class Download
     {
         public const string NUMSTAT_FILE_NAME = "_numstat.txt";
+        private static Regex regex1 = new Regex(@".+/([^/]+).git$");
+        private static Regex regex2 = new Regex(@".+/([^/]+)$");
 
         public static string GetProjectName(string url)
         {
-            Regex regex_merge = new Regex(@".+/([^/]+).git$");
-            var match = regex_merge.Match(url);
-            return match.Success ? match.Groups[1].Value : null;
+            var match = regex1.Match(url);
+            if (match.Success) return match.Groups[1].Value;
+            match = regex2.Match(url);
+            if (match.Success) return match.Groups[1].Value;
+            return null;
         }
 
         public static void Clone(int projectId, string url, string 작업폴더)

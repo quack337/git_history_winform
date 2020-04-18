@@ -54,12 +54,12 @@ namespace git_history
     partial void Insert과목(과목 instance);
     partial void Update과목(과목 instance);
     partial void Delete과목(과목 instance);
-    partial void Insert학생(학생 instance);
-    partial void Update학생(학생 instance);
-    partial void Delete학생(학생 instance);
     partial void Insert과제파일(과제파일 instance);
     partial void Update과제파일(과제파일 instance);
     partial void Delete과제파일(과제파일 instance);
+    partial void Insert학생(학생 instance);
+    partial void Update학생(학생 instance);
+    partial void Delete학생(학생 instance);
     #endregion
 		
 		public DBDataContext() : 
@@ -156,14 +156,6 @@ namespace git_history
 			}
 		}
 		
-		public System.Data.Linq.Table<학생> 학생
-		{
-			get
-			{
-				return this.GetTable<학생>();
-			}
-		}
-		
 		public System.Data.Linq.Table<과제파일> 과제파일
 		{
 			get
@@ -171,9 +163,17 @@ namespace git_history
 				return this.GetTable<과제파일>();
 			}
 		}
+		
+		public System.Data.Linq.Table<학생> 학생
+		{
+			get
+			{
+				return this.GetTable<학생>();
+			}
+		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.author")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Author")]
 	public partial class Author : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -1132,8 +1132,6 @@ namespace git_history
 		
 		private int _id;
 		
-		private string _프로젝트명;
-		
 		private string _과목;
 		
 		private string _url;
@@ -1154,8 +1152,6 @@ namespace git_history
     partial void OnCreated();
     partial void OnidChanging(int value);
     partial void OnidChanged();
-    partial void On프로젝트명Changing(string value);
-    partial void On프로젝트명Changed();
     partial void On과목Changing(string value);
     partial void On과목Changed();
     partial void OnurlChanging(string value);
@@ -1189,26 +1185,6 @@ namespace git_history
 					this._id = value;
 					this.SendPropertyChanged("id");
 					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_프로젝트명", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string 프로젝트명
-		{
-			get
-			{
-				return this._프로젝트명;
-			}
-			set
-			{
-				if ((this._프로젝트명 != value))
-				{
-					this.On프로젝트명Changing(value);
-					this.SendPropertyChanging();
-					this._프로젝트명 = value;
-					this.SendPropertyChanged("프로젝트명");
-					this.On프로젝트명Changed();
 				}
 			}
 		}
@@ -1954,148 +1930,6 @@ namespace git_history
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.학생")]
-	public partial class 학생 : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _학번;
-		
-		private string _이름;
-		
-		private EntitySet<Author> _Author;
-		
-		private EntitySet<학생_프로젝트> _학생_프로젝트;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void On학번Changing(string value);
-    partial void On학번Changed();
-    partial void On이름Changing(string value);
-    partial void On이름Changed();
-    #endregion
-		
-		public 학생()
-		{
-			this._Author = new EntitySet<Author>(new Action<Author>(this.attach_Author), new Action<Author>(this.detach_Author));
-			this._학생_프로젝트 = new EntitySet<학생_프로젝트>(new Action<학생_프로젝트>(this.attach_학생_프로젝트), new Action<학생_프로젝트>(this.detach_학생_프로젝트));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_학번", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string 학번
-		{
-			get
-			{
-				return this._학번;
-			}
-			set
-			{
-				if ((this._학번 != value))
-				{
-					this.On학번Changing(value);
-					this.SendPropertyChanging();
-					this._학번 = value;
-					this.SendPropertyChanged("학번");
-					this.On학번Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_이름", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string 이름
-		{
-			get
-			{
-				return this._이름;
-			}
-			set
-			{
-				if ((this._이름 != value))
-				{
-					this.On이름Changing(value);
-					this.SendPropertyChanging();
-					this._이름 = value;
-					this.SendPropertyChanged("이름");
-					this.On이름Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="학생_Author", Storage="_Author", ThisKey="학번", OtherKey="학번")]
-		public EntitySet<Author> Author
-		{
-			get
-			{
-				return this._Author;
-			}
-			set
-			{
-				this._Author.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="학생_학생_프로젝트", Storage="_학생_프로젝트", ThisKey="학번", OtherKey="학번")]
-		public EntitySet<학생_프로젝트> 학생_프로젝트
-		{
-			get
-			{
-				return this._학생_프로젝트;
-			}
-			set
-			{
-				this._학생_프로젝트.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Author(Author entity)
-		{
-			this.SendPropertyChanging();
-			entity.학생 = this;
-		}
-		
-		private void detach_Author(Author entity)
-		{
-			this.SendPropertyChanging();
-			entity.학생 = null;
-		}
-		
-		private void attach_학생_프로젝트(학생_프로젝트 entity)
-		{
-			this.SendPropertyChanging();
-			entity.학생 = this;
-		}
-		
-		private void detach_학생_프로젝트(학생_프로젝트 entity)
-		{
-			this.SendPropertyChanging();
-			entity.학생 = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.과제파일")]
 	public partial class 과제파일 : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2299,6 +2133,172 @@ namespace git_history
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.학생")]
+	public partial class 학생 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _학번;
+		
+		private string _이름;
+		
+		private string _이메일;
+		
+		private EntitySet<Author> _Author;
+		
+		private EntitySet<학생_프로젝트> _학생_프로젝트;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void On학번Changing(string value);
+    partial void On학번Changed();
+    partial void On이름Changing(string value);
+    partial void On이름Changed();
+    partial void On이메일Changing(string value);
+    partial void On이메일Changed();
+    #endregion
+		
+		public 학생()
+		{
+			this._Author = new EntitySet<Author>(new Action<Author>(this.attach_Author), new Action<Author>(this.detach_Author));
+			this._학생_프로젝트 = new EntitySet<학생_프로젝트>(new Action<학생_프로젝트>(this.attach_학생_프로젝트), new Action<학생_프로젝트>(this.detach_학생_프로젝트));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_학번", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string 학번
+		{
+			get
+			{
+				return this._학번;
+			}
+			set
+			{
+				if ((this._학번 != value))
+				{
+					this.On학번Changing(value);
+					this.SendPropertyChanging();
+					this._학번 = value;
+					this.SendPropertyChanged("학번");
+					this.On학번Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_이름", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string 이름
+		{
+			get
+			{
+				return this._이름;
+			}
+			set
+			{
+				if ((this._이름 != value))
+				{
+					this.On이름Changing(value);
+					this.SendPropertyChanging();
+					this._이름 = value;
+					this.SendPropertyChanged("이름");
+					this.On이름Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_이메일", DbType="VarChar(200)")]
+		public string 이메일
+		{
+			get
+			{
+				return this._이메일;
+			}
+			set
+			{
+				if ((this._이메일 != value))
+				{
+					this.On이메일Changing(value);
+					this.SendPropertyChanging();
+					this._이메일 = value;
+					this.SendPropertyChanged("이메일");
+					this.On이메일Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="학생_Author", Storage="_Author", ThisKey="학번", OtherKey="학번")]
+		public EntitySet<Author> Author
+		{
+			get
+			{
+				return this._Author;
+			}
+			set
+			{
+				this._Author.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="학생_학생_프로젝트", Storage="_학생_프로젝트", ThisKey="학번", OtherKey="학번")]
+		public EntitySet<학생_프로젝트> 학생_프로젝트
+		{
+			get
+			{
+				return this._학생_프로젝트;
+			}
+			set
+			{
+				this._학생_프로젝트.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Author(Author entity)
+		{
+			this.SendPropertyChanging();
+			entity.학생 = this;
+		}
+		
+		private void detach_Author(Author entity)
+		{
+			this.SendPropertyChanging();
+			entity.학생 = null;
+		}
+		
+		private void attach_학생_프로젝트(학생_프로젝트 entity)
+		{
+			this.SendPropertyChanging();
+			entity.학생 = this;
+		}
+		
+		private void detach_학생_프로젝트(학생_프로젝트 entity)
+		{
+			this.SendPropertyChanging();
+			entity.학생 = null;
 		}
 	}
 }
