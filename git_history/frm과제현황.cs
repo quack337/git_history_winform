@@ -49,15 +49,18 @@ namespace git_history
     AND hw.과목 = '{1}'
   ";
 
+        List<과제제출> 결과목록;
+        List<string> 파일목록;
+
         private void btn조회_Click(object sender, EventArgs e)
         {
-            var 결과목록 = new List<과제제출>();
+            결과목록 = new List<과제제출>();
             var 시작일 = dateTimePicker1.Value.Date;
             var 종료일 = 시작일.AddDays(7);
             var 과목 = cmb과목.SelectedItem.ToString();
             using (var db = new DBDataContext())
             {
-                var 파일목록 = db.과제파일.Where(p => p.과목 == 과목 && p.시작일 == 시작일).OrderBy(p => p.id).Select(p => p.파일명1).ToList();
+                파일목록 = db.과제파일.Where(p => p.과목 == 과목 && p.시작일 == 시작일).OrderBy(p => p.No).Select(p => p.파일명1).ToList();
                 while (파일목록.Count < 6)
                     파일목록.Add("");
                 var 헤더 = new 과제제출 { 학번 = "학번", 이름 = "이름", 제출1 = 파일목록[0],
@@ -85,6 +88,29 @@ namespace git_history
                     결과목록.Add(map[k]);
             }
             dataGridView1.DataSource = 결과목록;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < 2) return;
+            if (e.RowIndex < 1) return;
+            var 학번 = 결과목록[e.RowIndex].학번;
+            var 파일명 = 파일목록[e.ColumnIndex - 2];
+            var 과목명 = cmb과목.SelectedItem.ToString();
+            using (var db = new DBDataContext())
+            {
+                var 프로젝트목록 = db.학생_프로젝트.Where(p => p.학번 == 학번 && p.Project.과목 == 과목명).Select(p => p.Project);
+                foreach (var prj in 프로젝트목록)
+                {
+                    var file = prj.SourceFile.Where(p => p.경로명.Contains(파일명)).OrderByDescending(p => p.id).FirstOrDefault();
+                    if (file != null)
+                    {
+                        var url = prj.url.Replace(".git", "/blob/master/") + file.경로명;
+                        System.Diagnostics.Process.Start(url);
+                        break;
+                    }
+                }
+            }
         }
     }
 

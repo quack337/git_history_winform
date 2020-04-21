@@ -26,11 +26,6 @@ namespace git_history
             Regex regex_rename2 = new Regex(@"(.*) => (.*)$");
             var a = CultureInfo.InvariantCulture;
 
-            db.Numstat.DeleteAllOnSubmit(db.Numstat.Where(p => p.Commit.projectId == projectId));
-            db.SourceFile.DeleteAllOnSubmit(db.SourceFile.Where(p => p.projectId == projectId));
-            db.Commit.DeleteAllOnSubmit(db.Commit.Where(p => p.projectId == projectId));
-            db.SubmitChanges();
-
             using (var reader = new StreamReader(filePath))
             {
                 string s;
