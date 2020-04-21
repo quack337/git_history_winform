@@ -107,20 +107,14 @@ namespace git_history
                 var 프로젝트목록 = db.학생_프로젝트.Where(p => p.학번 == 학번 && p.Project.과목 == 과목명).Select(p => p.Project);
                 foreach (var prj in 프로젝트목록)
                 {
-                    var files = prj.SourceFile.Where(p => p.경로명.Contains(과제파일.파일명1) || 
-                                                          (string.IsNullOrEmpty(과제파일.파일명2) == false && p.경로명.Contains(과제파일.파일명2)) ||
-                                                          (string.IsNullOrEmpty(과제파일.파일명3) == false && p.경로명.Contains(과제파일.파일명3))).OrderByDescending(p => p.id);
-                    foreach (var file in files) 
-                    {
+                    var file = prj.SourceFile.Where(p => p.경로명.Contains(과제파일.파일명1) ||
+                                                         (string.IsNullOrEmpty(과제파일.파일명2) == false && p.경로명.Contains(과제파일.파일명2)) ||
+                                                         (string.IsNullOrEmpty(과제파일.파일명3) == false && p.경로명.Contains(과제파일.파일명3))).OrderByDescending(p => p.id).FirstOrDefault();
+                    if (file != null) 
+                    { 
                         var url = prj.url.Replace(".git", "/blob/master/") + file.경로명;
-
-                        HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-                        HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
-                        if (myHttpWebResponse.StatusCode == HttpStatusCode.OK)
-                        {
-                            System.Diagnostics.Process.Start(url);
-                            break;
-                        }
+                        System.Diagnostics.Process.Start(url);
+                        return;
                     }
                 }
             }
