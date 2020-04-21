@@ -82,13 +82,19 @@ namespace git_history
                     // comment
                     reader.ReadLine();
                     var builder = new StringBuilder();
+                    var numstat를먼저읽음 = false;
                     for (; ; )
                     {
                         s = reader.ReadLine();
+                        if (s[0] != ' ')
+                        {
+                            numstat를먼저읽음 = true; // 주석이 없고 바로 numstat
+                            break;
+                        }
                         if (s.Length == 0) break;
                         builder.Append(s.Trim()).Append('\n');
                     }
-                    commit.메모 = builder.ToString();
+                    if (numstat를먼저읽음 == false) commit.메모 = builder.ToString();
                     commit.projectId = projectId;
                     commit.authorId = author.id;
                     db.Commit.InsertOnSubmit(commit);
@@ -97,7 +103,9 @@ namespace git_history
                     // numstat
                     for (; ; )
                     {
-                        s = reader.ReadLine();
+                        if (numstat를먼저읽음) numstat를먼저읽음 = false;
+                        else s = reader.ReadLine();
+
                         if (s == null || s.Length == 0) break;
                         if (s.StartsWith("commit")) goto restart;
 

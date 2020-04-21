@@ -72,8 +72,10 @@ namespace git_history
                 var map = new Dictionary<string, 과제제출>();
                 foreach (var p in 조회결과목록)
                 {
+                    var prjId = db.학생_프로젝트.Where(q => q.학번 == p.학번 && q.Project.과목 == 과목).Select(q => q.Project.id).ToArray();
+
                     if (map.ContainsKey(p.학번) == false)
-                        map[p.학번] = new 과제제출 { 학번 = p.학번, 이름 = p.이름 };
+                        map[p.학번] = new 과제제출 { 학번 = p.학번, 이름 = p.이름, 프로젝트ID = string.Join(" ", prjId) };
                     var r = map[p.학번];
                     if (파일목록[0] == p.파일명) r.제출1 = p.제출;
                     else if (파일목록[1] == p.파일명) r.제출2 = p.제출;
@@ -124,6 +126,7 @@ namespace git_history
         public string 제출4 { get; set; }
         public string 제출5 { get; set; }
         public string 제출6 { get; set; }
+        public string 프로젝트ID { get; set; }
     }
 
     class 조회결과1
