@@ -60,6 +60,9 @@ namespace git_history
     partial void Insert과제파일(과제파일 instance);
     partial void Update과제파일(과제파일 instance);
     partial void Delete과제파일(과제파일 instance);
+    partial void Insert부분점수(부분점수 instance);
+    partial void Update부분점수(부분점수 instance);
+    partial void Delete부분점수(부분점수 instance);
     #endregion
 		
 		public DBDataContext() : 
@@ -169,6 +172,14 @@ namespace git_history
 			get
 			{
 				return this.GetTable<과제파일>();
+			}
+		}
+		
+		public System.Data.Linq.Table<부분점수> 부분점수
+		{
+			get
+			{
+				return this.GetTable<부분점수>();
 			}
 		}
 	}
@@ -2277,6 +2288,140 @@ namespace git_history
 					this._종료일 = value;
 					this.SendPropertyChanged("종료일");
 					this.On종료일Changed();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.부분점수")]
+	public partial class 부분점수 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _과목;
+		
+		private string _파일명;
+		
+		private string _학번;
+		
+		private int _점수;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void On과목Changing(string value);
+    partial void On과목Changed();
+    partial void On파일명Changing(string value);
+    partial void On파일명Changed();
+    partial void On학번Changing(string value);
+    partial void On학번Changed();
+    partial void On점수Changing(int value);
+    partial void On점수Changed();
+    #endregion
+		
+		public 부분점수()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_과목", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string 과목
+		{
+			get
+			{
+				return this._과목;
+			}
+			set
+			{
+				if ((this._과목 != value))
+				{
+					this.On과목Changing(value);
+					this.SendPropertyChanging();
+					this._과목 = value;
+					this.SendPropertyChanged("과목");
+					this.On과목Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_파일명", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string 파일명
+		{
+			get
+			{
+				return this._파일명;
+			}
+			set
+			{
+				if ((this._파일명 != value))
+				{
+					this.On파일명Changing(value);
+					this.SendPropertyChanging();
+					this._파일명 = value;
+					this.SendPropertyChanged("파일명");
+					this.On파일명Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_학번", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string 학번
+		{
+			get
+			{
+				return this._학번;
+			}
+			set
+			{
+				if ((this._학번 != value))
+				{
+					this.On학번Changing(value);
+					this.SendPropertyChanging();
+					this._학번 = value;
+					this.SendPropertyChanged("학번");
+					this.On학번Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_점수", DbType="Int NOT NULL")]
+		public int 점수
+		{
+			get
+			{
+				return this._점수;
+			}
+			set
+			{
+				if ((this._점수 != value))
+				{
+					this.On점수Changing(value);
+					this.SendPropertyChanging();
+					this._점수 = value;
+					this.SendPropertyChanged("점수");
+					this.On점수Changed();
 				}
 			}
 		}
