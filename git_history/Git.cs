@@ -40,7 +40,7 @@ namespace git_history
                         continue;
 
                     // commit
-                    var commit = new Commit { commitNo = s.Split(' ')[1] };
+                    var commit = new Commit { commitNo = commitNo };
                     s = reader.ReadLine();
                     var match = regex_merge.Match(s);
                     if (match.Success)
@@ -86,7 +86,7 @@ namespace git_history
                     for (; ; )
                     {
                         s = reader.ReadLine();
-                        if (s[0] != ' ')
+                        if (s.Length > 0 && s[0] != ' ')
                         {
                             numstat를먼저읽음 = true; // 주석이 없고 바로 numstat
                             break;
